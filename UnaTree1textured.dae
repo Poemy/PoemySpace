@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.78.0 commit date:2016-10-24, commit time:12:20, hash:e8299c8</authoring_tool>
     </contributor>
-    <created>2017-03-01T00:34:59</created>
-    <modified>2017-03-01T00:34:59</modified>
+    <created>2017-03-01T00:45:45</created>
+    <modified>2017-03-01T00:45:45</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -107,7 +107,7 @@
     </image>
   </library_images>
   <library_effects>
-    <effect id="MainStem-effect">
+    <effect id="UnaTree-effect">
       <profile_COMMON>
         <newparam sid="UnaTreeTexture_png-surface">
           <surface type="2D">
@@ -136,6 +136,12 @@
             <shininess>
               <float sid="shininess">50</float>
             </shininess>
+            <reflective>
+              <texture texture="UnaTreeTexture_png-sampler" texcoord="UVMap"/>
+            </reflective>
+            <transparent>
+              <texture texture="UnaTreeTexture_png-sampler" texcoord="UVMap"/>
+            </transparent>
             <index_of_refraction>
               <float sid="index_of_refraction">1</float>
             </index_of_refraction>
@@ -145,8 +151,8 @@
     </effect>
   </library_effects>
   <library_materials>
-    <material id="MainStem-material" name="MainStem">
-      <instance_effect url="#MainStem-effect"/>
+    <material id="UnaTree-material" name="UnaTree">
+      <instance_effect url="#UnaTree-effect"/>
     </material>
   </library_materials>
   <library_geometries>
@@ -184,7 +190,7 @@
         <vertices id="Cube_001-mesh-vertices">
           <input semantic="POSITION" source="#Cube_001-mesh-positions"/>
         </vertices>
-        <polylist material="MainStem-material" count="772">
+        <polylist material="UnaTree-material" count="772">
           <input semantic="VERTEX" source="#Cube_001-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#Cube_001-mesh-normals" offset="1"/>
           <input semantic="TEXCOORD" source="#Cube_001-mesh-map-0" offset="2" set="0"/>
@@ -206,11 +212,11 @@
         <instance_light url="#Lamp-light"/>
       </node>
       <node id="Cube" name="Cube" type="NODE">
-        <matrix sid="transform">1.149946 0.001823144 -0.102243 0.04849914 -0.001564555 1.140607 0.001745801 0.01413296 0.1425599 -0.002188376 0.8247528 4.485958 0 0 0 1</matrix>
+        <matrix sid="transform">1.036504 0.00164329 -0.09215666 0.04849914 -0.001410211 1.028086 0.001573577 0.01413296 0.1284963 -0.001972492 0.7433907 4.046307 0 0 0 1</matrix>
         <instance_geometry url="#Cube_001-mesh" name="Cube">
           <bind_material>
             <technique_common>
-              <instance_material symbol="MainStem-material" target="#MainStem-material">
+              <instance_material symbol="UnaTree-material" target="#UnaTree-material">
                 <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
               </instance_material>
             </technique_common>
