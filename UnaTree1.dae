@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.78.0 commit date:2016-10-24, commit time:12:20, hash:e8299c8</authoring_tool>
     </contributor>
-    <created>2017-03-01T00:27:16</created>
-    <modified>2017-03-01T00:27:16</modified>
+    <created>2017-03-01T00:32:51</created>
+    <modified>2017-03-01T00:32:51</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -101,10 +101,24 @@
       </extra>
     </light>
   </library_lights>
-  <library_images/>
+  <library_images>
+    <image id="UnaTreeTexture_png" name="UnaTreeTexture_png">
+      <init_from>UnaTreeTexture.png</init_from>
+    </image>
+  </library_images>
   <library_effects>
     <effect id="MainStem-effect">
       <profile_COMMON>
+        <newparam sid="UnaTreeTexture_png-surface">
+          <surface type="2D">
+            <init_from>UnaTreeTexture_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="UnaTreeTexture_png-sampler">
+          <sampler2D>
+            <source>UnaTreeTexture_png-surface</source>
+          </sampler2D>
+        </newparam>
         <technique sid="common">
           <phong>
             <emission>
@@ -114,7 +128,7 @@
               <color sid="ambient">0 0 0 1</color>
             </ambient>
             <diffuse>
-              <color sid="diffuse">0.2495901 0.2162843 1 1</color>
+              <texture texture="UnaTreeTexture_png-sampler" texcoord="UVMap"/>
             </diffuse>
             <specular>
               <color sid="specular">0.5 0.5 0.5 1</color>
@@ -192,11 +206,13 @@
         <instance_light url="#Lamp-light"/>
       </node>
       <node id="Cube" name="Cube" type="NODE">
-        <matrix sid="transform">1.282711 0.002033631 -0.1140472 0.04849914 -0.001745187 1.272294 0.001947358 0.01413296 0.1590188 -0.00244103 0.9199726 5.047915 0 0 0 1</matrix>
+        <matrix sid="transform">1.149946 0.001823144 -0.102243 0.04849914 -0.001564555 1.140607 0.001745801 0.01413296 0.1425599 -0.002188376 0.8247528 4.485958 0 0 0 1</matrix>
         <instance_geometry url="#Cube_001-mesh" name="Cube">
           <bind_material>
             <technique_common>
-              <instance_material symbol="MainStem-material" target="#MainStem-material"/>
+              <instance_material symbol="MainStem-material" target="#MainStem-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
